@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacked by TurkHackTeam</title>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ffffff;
+            --secondary-color: #ff0000;
+            --accent-color: #00ff00;
+            --bg-dark: #000000;
+            --text-color: #ffffff;
+            --glow-color: rgba(255, 255, 255, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-dark);
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+            cursor: none;
+        }
+
+        #particles-js {
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: auto;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            color: var(--text-color);
+            text-align: center;
+            padding-top: 10vh;
+            pointer-events: none;
+        }
+
+        .logo-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 15px;
+            border: 2px solid var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 30px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            max-width: 200px;
+            width: auto;
+        }
+
+        .logo-container img {
+            width: 130px;
+            height: auto;
+            max-width: 100%;
+            display: block;
+        }
+
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::before,
+        h1::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-color);
+            animation: lineGlow 2s ease-in-out infinite alternate;
+        }
+
+        h1::before {
+            left: -60px;
+        }
+
+        h1::after {
+            right: -60px;
+        }
+
+        @keyframes lineGlow {
+            from {
+                width: 50px;
+                opacity: 0.5;
+            }
+            to {
+                width: 100px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+                            0 0 20px rgba(255, 255, 255, 0.3),
+                            0 0 30px rgba(255, 255, 255, 0.2);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                            0 0 30px rgba(255, 255, 255, 0.5),
+                            0 0 40px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        .subtitle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .subtitle, p {
+            font-size: 1.2em;
+            color: var(--text-color);
+            opacity: 0.8;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+            margin: 0;
+        }
+
+        p {
+            background: none;
+            animation: none;
+            padding: 0;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--primary-color);
+            width: 200px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            z-index: 3;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--accent-color),
+                       0 0 40px var(--accent-color),
+                       0 0 60px var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        .feature-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        .feature-text {
+            font-size: 0.9em;
+            letter-spacing: 1px;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #000000, #1a1a1a);
+            animation: bgPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
+
+        ::selection {
+            background: var(--accent-color);
+            color: var(--bg-dark);
+        }
+
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s;
+        }
+
+        .custom-cursor.active {
+            transform: scale(1.5);
+            background: var(--primary-color);
+        }
+
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loading::after {
+            content: '';
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--primary-color);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: rotate 1s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 5px;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            z-index: 3;
+        }
+
+        .btn:hover {
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px var(--glow-color);
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 960px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                max-width: 720px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-container {
+                max-width: 180px;
+                padding: 8px;
+            }
+            .logo-container img {
+                width: 110px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-container {
+                max-width: 160px;
+                padding: 6px;
+            }
+            .logo-container img {
+                width: 100px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .header,
+            .footer,
+            .nav,
+            .btn {
+                display: none;
+            }
+
+            a {
+                text-decoration: underline;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-dark: #000000;
+                --bg-light: #111111;
+                --text-color: #ffffff;
+            }
+        }
+
+        @media (forced-colors: active) {
+            :root {
+                --primary-color: #ffffff;
+                --bg-dark: #000000;
+                --bg-light: #111111;
+                --text-color: #ffffff;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        .btn, .feature-item {
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div id="particles-js"></div>
+    <div class="content">
+        <div class="logo-container">
+            <img src="https://i.imgur.com/jzuC2kZ.png" alt="Turkhackteam Logo">
+        </div>
+        <h1>Hacked by TurkHackTeam</h1>
+        <div class="subtitle-container">
+            <div class="subtitle">Security is our priority</div>
+            <p>We Are Everywhere</p>
+        </div>
+        
+        <div class="features">
+            <div class="feature-item">
+                <i class="fas fa-shield-alt feature-icon"></i>
+                <div class="feature-text">Advanced Security</div>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-globe feature-icon"></i>
+                <div class="feature-text">Global Presence</div>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-code feature-icon"></i>
+                <div class="feature-text">Expert Team</div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <a href="https://turkhackteam.org" target="_blank" class="btn">Learn More</a>
+        </div>
+    </div>
+
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#ffffff'
+                },
+                shape: {
+                    type: 'circle'
+                },
+                opacity: {
+                    value: 0.7,
+                    random: false
+                },
+                size: {
+                    value: 5,
+                    random: true
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#ffffff',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'repulse'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    repulse: {
+                        distance: 100,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
+
+        const cursor = document.createElement('div');
+        cursor.className = 'custom-cursor';
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            const target = e.target;
+            if (target.classList.contains('btn') || target.closest('.feature-item')) {
+                cursor.style.display = 'none';
+            } else {
+                cursor.style.display = 'block';
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            cursor.classList.add('active');
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursor.classList.remove('active');
+        });
+
+        window.addEventListener('load', () => {
+            const loading = document.createElement('div');
+            loading.className = 'loading';
+            document.body.appendChild(loading);
+            setTimeout(() => {
+                loading.remove();
+            }, 1000);
+        });
+
+        const alert = document.createElement('div');
+        alert.className = 'alert';
+        alert.textContent = '⚠️ Dikkat: Bu site hacklendi!';
+        document.body.appendChild(alert);
+        setTimeout(() => {
+            alert.remove();
+        }, 5000);
+    </script>
+</body>
+</html>
+repo/
+└── public/
+    └── index.html
